@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="A heartfelt love letter to Becky, filled with memories and music.">
+  <meta property="og:title" content="For My Love, Becky">
+  <meta property="og:description" content="A romantic webpage dedicated to my special one, Becky.">
+  <meta property="og:image" content="https://yourdomain.com/images/becky1.jpg">
   <title>For My Love, Becky</title>
   <style>
     body {
@@ -35,14 +39,14 @@
     h1 {
       font-size: 3em;
       color: #ff3399;
-      font-family: 'Brush Script MT', cursive;
+      font-family: 'Brush Script MT', 'Comic Sans MS', cursive;
       margin-bottom: 10px;
     }
 
     .becky-name {
       font-size: 2.5em;
       color: #ff3399;
-      font-family: 'Brush Script MT', cursive;
+      font-family: 'Brush Script MT', 'Comic Sans MS', cursive;
       animation: glow 2s infinite alternate;
       margin-bottom: 20px;
     }
@@ -62,6 +66,14 @@
     .heart-emoji, .crying-emoji {
       font-size: 2.5em;
       margin: 10px 0;
+      display: inline-block;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
     }
 
     .photo-slots {
@@ -78,6 +90,7 @@
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       transition: transform 0.3s ease;
+      background: #f0f0f0 url('https://via.placeholder.com/200x200?text=Image+Not+Found') center/cover;
     }
 
     .photo-slots img:hover {
@@ -94,12 +107,49 @@
     .footer {
       margin-top: 20px;
       font-size: 1em;
-      color: #999;
+      color: #666; /* Improved contrast */
     }
 
     iframe {
       margin-top: 30px;
       border-radius: 10px;
+      loading: lazy; /* Lazy-load iframes */
+    }
+
+    .love-button {
+      font-size: 1.2em;
+      padding: 10px 20px;
+      border: none;
+      background-color: #ff3399;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s ease;
+    }
+
+    .love-button:hover {
+      background-color: #e62e8c;
+    }
+
+    .love-output {
+      margin-top: 15px;
+      font-size: 1.2em;
+      color: #444;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .love-output.visible {
+      opacity: 1;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      h1 { font-size: 2em; }
+      .becky-name { font-size: 1.8em; }
+      .photo-slots img { width: 150px; }
+      p { font-size: 1em; }
     }
   </style>
 </head>
@@ -121,30 +171,81 @@
 
     <p>Every moment with you is a gift. Every laugh we share is a memory I treasure. I can’t wait to build a future with you. You are my everything. 🌹</p>
 
+    <!-- Hidden Love Note -->
+    <button onclick="toggleNote()" class="love-button" aria-label="Toggle hidden love note">💌 Open My Heart</button>
+    <div id="hiddenNote" class="love-output">
+      <p>You're the only one who makes my heart race and feel safe at the same time. I’ll love you forever, no matter what. 💖</p>
+    </div>
+
+    <!-- Why I Love You Randomizer -->
+    <button onclick="showReason()" class="love-button" aria-label="Show a random reason why I love Becky">💭 Why do you love me?</button>
+    <p id="loveReason" class="love-output"></p>
+
     <div class="photo-slots">
-      <img src="E1/WhatsApp Image 2025-05-13 at 7.59.16 PM.jpeg" alt="Becky 1">
-      <img src="E3/WhatsApp Image 2025-05-13 at 7.59.16 PM.jpeg" alt="Becky 2">
-      <img src="E4/WhatsApp Image 2025-05-13 at 7.59.17 PM.jpeg" alt="Becky 3">
-      <img src="E5/WhatsApp Image 2025-05-13 at 7.59.17 PM.jpeg" alt="Becky 4">
+      <img src="E5/WhatsApp Image 2025-05-13 at 7.59.17 PM.jpeg" alt="Becky smiling at the park" width="200" height="200">
+      <img src="E4/WhatsApp Image 2025-05-13 at 7.59.17 PM.jpeg" alt="Becky laughing with flowers" width="200" height="200">
+      <img src="E3/WhatsApp Image 2025-05-13 at 7.59.16 PM.jpeg" alt="Our special moment together" width="200" height="200">
+      <img src="E1/WhatsApp Image 2025-05-13 at 7.59.16 PM.jpeg" alt="Becky at sunset" width="200" height="200">
     </div>
 
     <div class="crying-emoji">😭</div>
 
-    <div class="signature">With all my love, <br> []</div>
+    <div class="signature">With all my love, <br> Evian</div>
 
     <div class="footer">Forever yours, always ❤️</div>
 
     <!-- SoundCloud Music Embed -->
-    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1808772552&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true">
+    <iframe title="SoundCloud player for No Chill by PARTYNEXTDOOR" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay"
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1808772552&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" loading="lazy">
     </iframe>
     <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif; font-weight: 100;">
       <a href="https://soundcloud.com/purriani" title="Yas" target="_blank" style="color: #cccccc; text-decoration: none;">Yas</a> · 
       <a href="https://soundcloud.com/purriani/no-chill-partynextdoor-slowed" title="No Chill- Partynextdoor (slowed+reverbed)" target="_blank" style="color: #cccccc; text-decoration: none;">No Chill - Partynextdoor (slowed+reverbed)</a>
     </div>
-    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1954078183&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/claudia-filimon-171946784" title="Music love💞❣️" target="_blank" style="color: #cccccc; text-decoration: none;">Music love💞❣️</a> · <a href="https://soundcloud.com/claudia-filimon-171946784/partynextdoor-make-it-to-the" title="PARTYNEXTDOOR - Make It To The Morning" target="_blank" style="color: #cccccc; text-decoration: none;">PARTYNEXTDOOR - Make It To The Morning</a></div>
-
+    <iframe title="SoundCloud player for Make It To The Morning by PARTYNEXTDOOR" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" 
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1954078183&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true" loading="lazy">
+    </iframe>
+    <div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+      <a href="https://soundcloud.com/claudia-filimon-171946784" title="Music love💞❣️" target="_blank" style="color: #cccccc; text-decoration: none;">Music love💞❣️</a> · 
+      <a href="https://soundcloud.com/claudia-filimon-171946784/partynextdoor-make-it-to-the" title="PARTYNEXTDOOR - Make It To The Morning" target="_blank" style="color: #cccccc; text-decoration: none;">PARTYNEXTDOOR - Make It To The Morning</a>
+    </div>
   </div>
+
+  <!-- JavaScript for Interactivity -->
+  <script>
+    const reasons = [
+      "Your laugh is my favorite sound.",
+      "You make me feel safe and loved.",
+      "You're my best friend and my home.",
+      "You always believe in me.",
+      "You're the most beautiful soul I’ve ever met.",
+      "Even on bad days, you make everything better.",
+      "I love the way you look at the world.",
+      "You love me even when I struggle to love myself.",
+      "Every version of you is my favorite.",
+      "Being with you feels like magic."
+    ];
+
+    function showReason() {
+      const randomIndex = Math.floor(Math.random() * reasons.length);
+      const loveReason = document.getElementById("loveReason");
+      loveReason.innerText = reasons[randomIndex];
+      loveReason.classList.add("visible");
+    }
+
+    function toggleNote() {
+      const note = document.getElementById("hiddenNote");
+      note.style.display = note.style.display === "block" ? "none" : "block";
+      if (note.style.display === "block") {
+        note.classList.add("visible");
+      } else {
+        note.classList.remove("visible");
+      }
+    }
+
+    // Ensure hidden note is initially hidden
+    document.getElementById("hiddenNote").style.display = "none";
+  </script>
 
 </body>
 </html>
